@@ -47,7 +47,7 @@ jobs:
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
           path: ".output"
-          remote_path: /home/user/action-test/
+          remote_path: "/home/user/action-test/.output"
           debug: true
           switches: "-avz"
           

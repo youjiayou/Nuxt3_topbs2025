@@ -14,11 +14,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          
-      - name: Diagnostics
-        run: |
-          echo "Current Working Directory is: $PWD"
-          ls -a # 這裡應該會看到 package.json
 
       - name: Install depemdemcoes and Build
         working-directory: ./ 
@@ -34,8 +29,8 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            # 更改要更停止 ecosystem.config.js 的位置
             cd /home/user/action-test
-            ls -la
             # pm2 stop ecosystem.config.js
             rm -fr .output
 
@@ -47,9 +42,12 @@ jobs:
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
           path: ".output"
+          # 設置 remote path
           remote_path: "/home/user/action-test/.output"
           debug: true
+          
           switches: "-avz"
+          # switches: "-avz --delete" 新增可以移除舊檔
           
 
       - name: Copy to nginx

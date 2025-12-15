@@ -49,6 +49,7 @@ jobs:
           path: ".output"
           remote_path: /home/user/action-test
           debug: true
+          switches: "-avz"
           
 
       - name: Copy to nginx
